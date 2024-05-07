@@ -6,8 +6,36 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
-client = MongoClient('mongodb://localhost:27017/')
+# client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb+srv://sayali:k8qfDNzKHE5JOqt5@avfleetcluster.p0ttflr.mongodb.net/?retryWrites=true&w=majority&appName=AVFleetCluster')
+
 db = client['AVFleetRealTime']
+
+
+#API to create trip record
+@app.route('/createTrip', methods=['POST'])
+def createTrip():
+    try:
+        collection = db["trips"]
+        record = request.json
+        start_time = datetime.fromisoformat(record["start_time"])
+
+        record["start_time"] = start_time
+        end_time = datetime.fromisoformat(record["end_time"]) if record["end_time"] != None else None
+
+        record["end_time"] = end_time
+
+        record["expiry_date"]= start_time + timedelta(days=365)
+        # record["expiry_date"]= start_time + timedelta(seconds=60)
+        if record:
+            response_ack = collection.insert_one(record)
+            print(type(response_ack))
+            print(response_ack)
+            return jsonify({'message': 'Trip created successfully', 'id': str(response_ack.inserted_id)}), 201
+        else:
+            return jsonify({'message': 'Error: No data provided'}), 400
+    except PyMongoError as e:
+        return jsonify({'error': str(e)}), 500
 
 
 #API to create sensor info record
