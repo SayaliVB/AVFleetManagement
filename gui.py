@@ -51,6 +51,36 @@ def getAllTrips():
         return jsonify({'error': str(e)}), 500
     
 
+# #API to get All Trip information
+@app.route('/getRecentTripInfo', methods=['GET'])
+def getRecentTripInfo():
+    try:
+        collection = db["trips"]
+
+        trips = collection.find({'completed': False})
+        results = []
+
+        for trip in trips:
+            trip_id = trip['_id']
+            vehicle_id = trip['vehicle_id']
+            collection = db["vehicle_status"]
+            print(vehicle_id)
+            
+            # Get the most recent status for this trip_id
+            recent_status = collection.find_one(
+                {'trip_id': ObjectId(trip_id)},
+                sort=[('timestamp', -1)],
+                projection={'location_lat': 1, 'location_long': 1}
+            )
+
+            # Add the results to the list
+            results.append({
+                'vehicle_id': vehicle_id,
+                'recent_status': recent_status
+            })
+        return dumps(results), 200
+    except PyMongoError as e:
+        return jsonify({'error': str(e)}), 500
 
 
 #API to get Sensor information
