@@ -26,7 +26,7 @@ def createTrip():
         "destination": { "type": "Point", "coordinates": [18.877, 12.655] },
         "occupancy": 4,
         "completed": False,
-        "start_time": "2024-05-07T15:46:00Z",
+        "start_time": "2024-05-07T15:46:00",
         "end_time": None
     }
 
@@ -119,7 +119,7 @@ def endTrip(vehicle_id):
     data={
         "trip_id":"66286e1fed4328b545fa9705",
         "completed": True,
-        "end_time": "2024-05-07T16:46:00Z"
+        "end_time": "2024-05-07T16:46:00"
     }
 
     # Headers to indicate JSON data

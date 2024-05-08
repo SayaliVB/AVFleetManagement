@@ -25,7 +25,7 @@ def createTrip():
         "destination": { "type": "Point", "coordinates": [36.877, 112.655] },
         "occupancy": 3,
         "completed": False,
-        "start_time": "2024-05-07T08:12:00Z",
+        "start_time": "2024-05-07T08:12:00",
         "end_time": None
     }
 
@@ -79,7 +79,7 @@ def sendTripStatus():
     for data in records:
         # Convert timestamp into ISO format for mongo
         timestamp = createTimeStamp(data['Simulation time'])
-        data['timestamp'] = timestamp[:-1]
+        data['timestamp'] = timestamp
         # print("Trip mapping dictionarty: ",trip_mapping)
         data["trip_id"] = trip_mapping[data["Unique_id"]]
 
@@ -117,7 +117,7 @@ def endTrip(vehicle_id):
     data={
         "trip_id":"66286e1fed4328b545fa9705",
         "completed": True,
-        "end_time": "2024-05-07T08:42:00Z"
+        "end_time": "2024-05-07T08:42:00"
     }
 
     # Headers to indicate JSON data
