@@ -100,7 +100,7 @@ def sendTripStatus():
 
         response = requests.post(url, data=json.dumps(data), headers=headers)
         if response.status_code == 201:
-            # print(f"Sent data for trip_id {data['trip_id']}, response: {response.text}")
+            print(f"Sent data for trip_id {data['trip_id']}, response: {response.text}")
             responsestr +=f"Sent data for trip_id {data['trip_id']}, response: {response.text} <br>"
             time.sleep(1)
         i+=1
