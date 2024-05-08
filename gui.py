@@ -14,14 +14,13 @@ db = client['AVFleetRealTime']
 
 
 #API to get trip information
-@app.route('/getCurrentTrip', methods=['GET'])
-def getCurrentTrip():
-    vehicle_id = request.args.get('vehicle_id')
+@app.route('/getCurrentTrip/<vehicle_id>', methods=['GET'])
+def getCurrentTrip(vehicle_id):
     print(vehicle_id)
     try:
         collection = db["trips"]
 
-        records = collection.find({'vehicle_id': vehicle_id}).sort({'start_time': -1}).limit(1) #asc: 1, desc:-1
+        records = collection.find({'vehicle_id': vehicle_id, 'completed': False}).sort({'start_time': -1}).limit(1) #asc: 1, desc:-1
         record_list = list(records)
         # print(record_list)
         if len(record_list)>0:
@@ -33,14 +32,13 @@ def getCurrentTrip():
     
 
 #API to get trip information
-@app.route('/getAllTrips', methods=['GET'])
-def getAllTrips():
-    vehicle_id = request.args.get('vehicle_id')
+@app.route('/getAllTrips/<vehicle_id>', methods=['GET'])
+def getAllTrips(vehicle_id):
     print(vehicle_id)
     try:
         collection = db["trips"]
 
-        records = collection.find({'vehicle_id': vehicle_id}).sort({'start_time': -1}) #asc: 1, desc:-1
+        records = collection.find({'vehicle_id': vehicle_id, 'completed': False}).sort({'start_time': -1}) #asc: 1, desc:-1
         record_list = list(records)
         # print(record_list)
         if len(record_list)>0:
