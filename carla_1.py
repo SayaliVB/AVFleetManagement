@@ -6,8 +6,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-api_ip = '127.0.0.1:5000'
-#api_ip='54.193.129.173:5000'
+# api_ip = '127.0.0.1:5000'
+api_ip='52.91.48.231:5003'
 
 trip_mapping = {"4a77d76cab9beed398389f2203e85e0bb852271d9e035cc957e6ab5b9bbd75d1": "", "ef0bf2004d81b3b27d0ec5e5d7e5477f6f1205e44e44145c7e16d9fb2de0040e": ""}
 
