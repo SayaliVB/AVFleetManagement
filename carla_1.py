@@ -79,7 +79,7 @@ def sendTripStatus():
     for data in records:
         # Convert timestamp into ISO format for mongo
         timestamp = createTimeStamp(data['Simulation time'])
-        data['timestamp'] = timestamp
+        data['timestamp'] = timestamp[:-1]
         # print("Trip mapping dictionarty: ",trip_mapping)
         data["trip_id"] = trip_mapping[data["Unique_id"]]
 
