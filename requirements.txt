@@ -1,0 +1,13 @@
+flask
+pymongo
+requests
+SQLAlchemy
+sqlalchemy-connector
+matplotlib
+pandas
+flask-cors
+pymysql
+mysql-connector-python
+flask-socketio 
+flask-sqlalchemy
+flask_jwt_extended
