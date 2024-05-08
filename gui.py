@@ -172,9 +172,9 @@ def getRecentInfo():
 
 
 #API to get Vehicle status information
-@app.route('/getLastStatus', methods=['GET'])
-def getLastStatus():
-    trip_id = ObjectId(request.args.get('trip_id'))
+@app.route('/getLastStatus/<trip_id>', methods=['GET'])
+def getLastStatus(trip_id):
+    trip_id = ObjectId(trip_id)
     print(trip_id)
     try:
         collection = db["vehicle_status"]
