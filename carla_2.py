@@ -36,13 +36,13 @@ def createTrip():
         # print(data)
         print(f"Create for trip_id {resp_data['id']}")
     if(data['vehicle_id'] =="2"):
-        print("in here")
+        # print("in here")
         trip_mapping['4a77d76cab9beed398389f2203e85e0bb852271d9e035cc957e6ab5b9bbd75d1'] = resp_data['id']
-        print(trip_mapping)
+        # print(trip_mapping)
     elif(data['vehicle_id'] =="1"):
-        print("in here1")
+        # print("in here1")
         trip_mapping['ef0bf2004d81b3b27d0ec5e5d7e5477f6f1205e44e44145c7e16d9fb2de0040e'] = resp_data['id']
-        print(trip_mapping)
+        # print(trip_mapping)
     else:
         trip_mapping[''] = resp_data['id']
     return resp_data['id']
@@ -83,7 +83,7 @@ def sendTripStatus():
         # print("Trip mapping dictionarty: ",trip_mapping)
         data["trip_id"] = trip_mapping[data["Unique_id"]]
 
-        print("tripid: ", data["trip_id"])
+        # print("tripid: ", data["trip_id"])
 
         del data['Simulation time']
 
@@ -96,11 +96,11 @@ def sendTripStatus():
         del data['Location']
 
         data["speed"] = data.pop("Speed (km/h)")
-        print(data)
+        # print(data)
 
         response = requests.post(url, data=json.dumps(data), headers=headers)
         if response.status_code == 201:
-            print(f"Sent data for trip_id {data['trip_id']}, response: {response.text}")
+            # print(f"Sent data for trip_id {data['trip_id']}, response: {response.text}")
             responsestr +=f"Sent data for trip_id {data['trip_id']}, response: {response.text} <br>"
             time.sleep(1)
         i+=1
@@ -124,13 +124,13 @@ def endTrip(vehicle_id):
     # Headers to indicate JSON data
     headers = {'Content-Type': 'application/json'}
     if(vehicle_id =="2"):
-        print("end in here 1")
+        # print("end in here 1")
         data['trip_id'] = trip_mapping['4a77d76cab9beed398389f2203e85e0bb852271d9e035cc957e6ab5b9bbd75d1']
-        print(trip_mapping)
+        # print(trip_mapping)
     elif(vehicle_id =="1"):
-        print("end in here 2")
+        # print("end in here 2")
         data['trip_id'] = trip_mapping['ef0bf2004d81b3b27d0ec5e5d7e5477f6f1205e44e44145c7e16d9fb2de0040e']
-        print(trip_mapping)
+        # print(trip_mapping)
     else:
         data['trip_id'] = "663b1d380aeb0fe08c8c1b7e"
 

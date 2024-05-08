@@ -38,7 +38,7 @@ def getAllTrips(vehicle_id):
     try:
         collection = db["trips"]
 
-        records = collection.find({'vehicle_id': vehicle_id, 'completed': False}).sort({'start_time': -1}) #asc: 1, desc:-1
+        records = collection.find({'vehicle_id': vehicle_id, 'completed': True}).sort({'start_time': -1}) #asc: 1, desc:-1
         record_list = list(records)
         # print(record_list)
         if len(record_list)>0:
